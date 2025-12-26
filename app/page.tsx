@@ -18,17 +18,20 @@ export default async function Home() {
 		.slice(0, 3)
 
 	return (
-		<main className="max-w-2xl mx-auto pt-28 pb-24">
-			<div className="flex flex-col gap-20">
+		<main className="max-w-[68ch] mx-auto px-5 sm:px-6 pt-24 sm:pt-28 pb-20 sm:pb-24">
+			<div className="flex flex-col gap-14 sm:gap-20">
 				{/* Identity */}
 				<section className="flex flex-col gap-10">
 					<div className="flex flex-col">
-						<h1 className="font-medium text-xl">Indana Rishi</h1>
+						<h1 className="font-medium text-lg sm:text-xl">
+							Indana Rishi
+						</h1>
+
 						<span className="text-slate-400">
 							Software Engineer
 						</span>
 					</div>
-					<span className="text-lg leading-relaxed">
+					<span className="text-base sm:text-lg leading-relaxed">
 						I’m a human who happens to be a software enginer — and
 						here’s how I think.
 					</span>
@@ -41,7 +44,7 @@ export default async function Home() {
 				{/* Notes */}
 				<section className="flex flex-col gap-10">
 					<div className="flex items-center justify-between">
-						<h2 className="font-medium text-xl tracking-tight">
+						<h2 className="font-medium text-lg sm:text-xl tracking-tight">
 							Notes
 						</h2>
 						<Link
@@ -55,7 +58,7 @@ export default async function Home() {
 					<div className="flex flex-col gap-4">
 						<h3>Software Engineering</h3>
 
-						<ul className="grid grid-cols-1 gap-3">
+						<ul className="grid grid-cols-1 gap-3 sm:gap-4">
 							{softwareNotes.map((n) => (
 								<Link key={n.slug} href={`/notes/${n.slug}`}>
 									<li className="flex flex-col gap-2 rounded-lg p-4 border border-slate-800 transition hover:border-slate-900 hover:bg-slate-900">
@@ -72,7 +75,7 @@ export default async function Home() {
 					<div className="flex flex-col gap-4">
 						<h3>Psychology</h3>
 
-						<ul className="grid grid-cols-1 gap-3">
+						<ul className="grid grid-cols-1 gap-3 sm:gap-4">
 							{psychologyNotes.map((n) => (
 								<Link key={n.slug} href={`/notes/${n.slug}`}>
 									<li className="flex flex-col gap-2 rounded-lg p-4 border border-slate-800 transition hover:border-slate-900 hover:bg-slate-900">
@@ -89,7 +92,7 @@ export default async function Home() {
 					<div className="flex flex-col gap-4">
 						<h3>Philosophy</h3>
 
-						<ul className="grid grid-cols-1 gap-3">
+						<ul className="grid grid-cols-1 gap-3 sm:gap-4">
 							{philosophyNotes.map((n) => (
 								<Link key={n.slug} href={`/notes/${n.slug}`}>
 									<li className="flex flex-col gap-2 rounded-lg p-4 border border-slate-800 transition hover:border-slate-900 hover:bg-slate-900">
@@ -107,7 +110,7 @@ export default async function Home() {
 				{/* Selected Work */}
 				<section className="flex flex-col gap-10">
 					<div className="flex items-center justify-between">
-						<h2 className="font-medium text-xl tracking-tight">
+						<h2 className="font-medium text-lg sm:text-xl tracking-tight">
 							Selected Works
 						</h2>
 						<Link
@@ -118,7 +121,7 @@ export default async function Home() {
 						</Link>
 					</div>
 
-					<ul className="grid grid-cols-1 gap-3">
+					<ul className="grid grid-cols-1 gap-3 sm:gap-4">
 						<li className="rounded-lg p-4 border border-slate-900 transition hover:border-slate-900 hover:bg-slate-900">
 							<div className="flex items-start gap-4">
 								<Image
@@ -129,15 +132,15 @@ export default async function Home() {
 									className="mt-1"
 								/>
 								<div className="flex-1">
-									<div className="flex justify-between">
+									<div className="flex flex-col sm:flex-row justify-between">
 										<span className="font-medium text-slate-100">
 											Pertamina Hulu Indonesia
 										</span>
-										<span className="text-slate-400">
+										<span className="text-slate-400 text-sm sm:text-base">
 											Frontend Developer
 										</span>
 									</div>
-									<p className="mt-2 text-slate-400 leading-relaxed">
+									<p className="mt-4 sm:mt-2 text-slate-400 leading-relaxed">
 										Project management system for monitoring
 										projects, contracts, and vendor
 										operations
@@ -156,15 +159,15 @@ export default async function Home() {
 									className="mt-1"
 								/>
 								<div className="flex-1">
-									<div className="flex justify-between">
+									<div className="flex flex-col sm:flex-row justify-between">
 										<span className="font-medium text-slate-100">
 											PLN Icon Plus
 										</span>
-										<span className="text-slate-400">
+										<span className="text-slate-400 text-sm sm:text-base">
 											Frontend Developer
 										</span>
 									</div>
-									<p className="mt-2 text-slate-400 leading-relaxed">
+									<p className="mt-4 sm:mt-2 text-slate-400 leading-relaxed">
 										Secure payment platform and CMS systems
 										supporting national infrastructure
 										services
@@ -183,15 +186,15 @@ export default async function Home() {
 									className="mt-1"
 								/>
 								<div className="flex-1">
-									<div className="flex justify-between">
+									<div className="flex flex-col sm:flex-row justify-between">
 										<span className="font-medium text-slate-100">
 											Telkomsel
 										</span>
-										<span className="text-slate-400">
+										<span className="text-slate-400 text-sm sm:text-base">
 											Frontend Developer
 										</span>
 									</div>
-									<p className="mt-2 text-slate-400 leading-relaxed">
+									<p className="mt-4 sm:mt-2 text-slate-400 leading-relaxed">
 										CMS dashboard for e-money services and
 										internal quality assurance tools
 										supporting enterprise development teams
@@ -210,15 +213,15 @@ export default async function Home() {
 									className="mt-1"
 								/>
 								<div className="flex-1">
-									<div className="flex justify-between">
+									<div className="flex flex-col sm:flex-row justify-between">
 										<span className="font-medium text-slate-100">
 											Lion Parcel
 										</span>
-										<span className="text-slate-400">
+										<span className="text-slate-400 text-sm sm:text-base">
 											Frontend Developer
 										</span>
 									</div>
-									<p className="mt-2 text-slate-400 leading-relaxed">
+									<p className="mt-4 sm:mt-2 text-slate-400 leading-relaxed">
 										Core logistics and delivery management
 										platform supporting nationwide shipment
 										operations
@@ -237,15 +240,15 @@ export default async function Home() {
 									className="mt-1"
 								/>
 								<div className="flex-1">
-									<div className="flex justify-between">
+									<div className="flex flex-col sm:flex-row justify-between">
 										<span className="font-medium text-slate-100">
 											LEARN.gov.sg
 										</span>
-										<span className="text-slate-400">
+										<span className="text-slate-400 text-sm sm:text-base">
 											Frontend & Mobile Developer
 										</span>
 									</div>
-									<p className="mt-2 text-slate-400 leading-relaxed">
+									<p className="mt-4 sm:mt-2 text-slate-400 leading-relaxed">
 										National learning platform delivering
 										education services across web and mobile
 									</p>
@@ -263,15 +266,15 @@ export default async function Home() {
 									className="mt-1"
 								/>
 								<div className="flex-1">
-									<div className="flex justify-between">
+									<div className="flex flex-col sm:flex-row justify-between">
 										<span className="font-medium text-slate-100">
 											Biofarma
 										</span>
-										<span className="text-slate-400">
+										<span className="text-slate-400 text-sm sm:text-base">
 											Frontend Developer
 										</span>
 									</div>
-									<p className="mt-2 text-slate-400 leading-relaxed">
+									<p className="mt-4 sm:mt-2 text-slate-400 leading-relaxed">
 										CMS dashboard for pharmaceutical content
 										and healthcare system management
 									</p>
@@ -283,7 +286,7 @@ export default async function Home() {
 
 				{/* Journey */}
 				<section className="flex flex-col gap-10">
-					<h2 className="font-medium text-xl tracking-tight">
+					<h2 className="font-medium text-lg sm:text-xl tracking-tight">
 						Journey
 					</h2>
 
@@ -346,7 +349,7 @@ export default async function Home() {
 
 				{/* Contact */}
 				<section className="flex flex-col gap-10">
-					<h2 className="font-medium text-xl tracking-tight">
+					<h2 className="font-medium text-lg sm:text-xl tracking-tight">
 						Connect
 					</h2>
 

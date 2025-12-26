@@ -20,8 +20,8 @@ export default async function NotePage({params}: PageProps) {
 	const blocks = renderBlocks(data.blocks)
 
 	return (
-		<main className="max-w-2xl mx-auto pt-28 pb-24">
-			<div className="flex flex-col gap-20">
+		<main className="max-w-[68ch] mx-auto px-5 sm:px-6 pt-24 sm:pt-28 pb-20 sm:pb-24">
+			<div className="flex flex-col gap-14 sm:gap-20">
 				<section>
 					<Link
 						href="/notes"

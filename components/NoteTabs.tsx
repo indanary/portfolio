@@ -34,7 +34,7 @@ export default function NotesTabs({notes}: {notes: any[]}) {
 			</section>
 
 			<section>
-				<ul className="grid grid-cols-1 gap-3">
+				<ul className="grid grid-cols-1 gap-3 sm:gap-4">
 					{filtered.map((n) => (
 						<NoteCard
 							key={n.slug}

@@ -2,7 +2,7 @@ import {works} from "@/lib/works"
 
 export default function WorksPage() {
 	return (
-		<main className="max-w-[68ch] mx-auto px-6 pt-32 pb-32">
+		<main className="max-w-[68ch] mx-auto px-5 sm:px-6 pt-24 sm:pt-28 pb-20 sm:pb-24">
 			<header className="mb-24 space-y-6">
 				<h1 className="text-2xl font-medium">Works</h1>
 				<p className="text-slate-400 leading-relaxed">
