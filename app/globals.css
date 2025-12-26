@@ -1,26 +1,157 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+	--background: #ffffff;
+	--foreground: #171717;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--font-sans: var(--font-geist-sans);
+	--font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+	:root {
+		--background: #0a0a0a;
+		--foreground: #ededed;
+	}
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+	background: var(--background);
+	color: var(--foreground);
+	font-family: ui-serif, Georgia, Cambria, "Times New Roman", serif;
+}
+
+.notion {
+	line-height: 1.75;
+	max-width: 68ch;
+	margin: auto;
+}
+
+.notion p {
+	margin: 1.2em 0;
+	color: #e5e7eb;
+	text-rendering: optimizeLegibility;
+}
+
+.notion h1 {
+	font-size: 1.5rem;
+	margin-top: 2.5em;
+	margin-bottom: 0.8em;
+}
+
+.notion h2 {
+	font-size: 1.25rem;
+	margin-top: 2.2em;
+	margin-bottom: 0.7em;
+}
+
+.notion h3 {
+	font-size: 1.1rem;
+	margin-top: 2em;
+	margin-bottom: 0.6em;
+}
+
+.notion h1,
+.notion h2,
+.notion h3 {
+	font-weight: 500;
+	letter-spacing: -0.01em;
+}
+
+/* Blockquotes */
+.notion blockquote {
+	margin: 2em 0;
+	padding-left: 1em;
+	border-left: 3px solid #444;
+	color: #cbd5e1;
+	font-style: italic;
+}
+
+/* Lists */
+.notion ul,
+.notion ol {
+	margin: 1.2em 0;
+	padding-left: 1.5em;
+}
+
+.notion li {
+	margin: 0.4em 0;
+}
+
+/* Inline code */
+.notion code {
+	background: #1e1e1e;
+	padding: 0.15em 0.35em;
+	border-radius: 4px;
+	font-size: 0.9em;
+}
+
+/* Code blocks */
+.notion pre {
+	margin: 1.8em 0;
+	padding: 1em 1.2em;
+	background: #121212;
+	border-radius: 6px;
+	overflow-x: auto;
+	font-size: 0.9rem;
+	line-height: 1.6;
+}
+
+.notion pre code {
+	background: none;
+	padding: 0;
+}
+
+/* Callouts */
+.notion .callout {
+	margin: 1.8em 0;
+	padding: 1em 1.2em;
+	border-left: 4px solid #555;
+	background: #141414;
+	border-radius: 4px;
+}
+
+/* Images */
+.notion img {
+	border-radius: 6px;
+	max-width: 100%;
+	display: block;
+	margin: 2.5em auto;
+}
+
+/* Links */
+.notion a {
+	color: #cbd5e1;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+.notion a:hover {
+	color: #ffffff;
+}
+
+/* Horizontal rule */
+.notion hr {
+	margin: 3em 0;
+	border: none;
+	border-top: 1px solid #333;
+}
+
+/* Force list markers back */
+.notion ul {
+	list-style-type: disc !important;
+	padding-left: 1.5rem;
+}
+
+.notion ol {
+	list-style-type: decimal !important;
+	padding-left: 1.5rem;
+}
+
+.notion li::marker {
+	color: #e5e7eb;
 }

@@ -3,6 +3,7 @@ export const runtime = "nodejs"
 import Link from "next/link"
 import {getNoteBySlug} from "@/lib/notes"
 import {renderBlocks} from "@/lib/renderNotion"
+import Image from "next/image"
 
 interface PageProps {
 	params: Promise<{slug: string}>
@@ -36,27 +37,80 @@ export default async function NotePage({params}: PageProps) {
 					</h1>
 				</section>
 
-				<section className="flex flex-col gap-6 leading-relaxed text-slate-200">
+				<section className="notion">
 					{blocks.map((b: any, i: number) => {
-						if (b.type === "p") return <p key={i}>{b.text}</p>
+						if (b.type === "p")
+							return (
+								<p
+									key={i}
+									dangerouslySetInnerHTML={{__html: b.text}}
+								/>
+							)
+
 						if (b.type === "h1")
 							return (
-								<h1 key={i} className="text-xl font-medium">
-									{b.text}
-								</h1>
+								<h1
+									key={i}
+									dangerouslySetInnerHTML={{__html: b.text}}
+								/>
 							)
+
 						if (b.type === "h2")
 							return (
-								<h2 key={i} className="text-lg font-medium">
-									{b.text}
-								</h2>
+								<h2
+									key={i}
+									dangerouslySetInnerHTML={{__html: b.text}}
+								/>
 							)
+
 						if (b.type === "h3")
 							return (
-								<h3 key={i} className="font-medium">
-									{b.text}
-								</h3>
+								<h3
+									key={i}
+									dangerouslySetInnerHTML={{__html: b.text}}
+								/>
 							)
+
+						if (b.type === "quote")
+							return <blockquote key={i}>{b.text}</blockquote>
+
+						if (b.type === "ul")
+							return (
+								<ul key={i}>
+									{b.items.map((item: string, j: number) => (
+										<li key={j}>{item}</li>
+									))}
+								</ul>
+							)
+
+						if (b.type === "ol")
+							return (
+								<ol key={i}>
+									{b.items.map((item: string, j: number) => (
+										<li key={j}>{item}</li>
+									))}
+								</ol>
+							)
+
+						if (b.type === "code")
+							return (
+								<pre key={i}>
+									<code>{b.text}</code>
+								</pre>
+							)
+
+						if (b.type === "callout")
+							return (
+								<div key={i} className="callout">
+									{b.text}
+								</div>
+							)
+
+						if (b.type === "image")
+							return <img key={i} src={b.src} alt={b.alt || ""} />
+
+						if (b.type === "divider") return <hr key={i} />
+
 						return null
 					})}
 				</section>
