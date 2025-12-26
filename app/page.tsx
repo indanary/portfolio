@@ -18,7 +18,7 @@ export default async function Home() {
 		.slice(0, 3)
 
 	return (
-		<main className="max-w-2xl mx-auto pt-36 pb-24">
+		<main className="max-w-2xl mx-auto pt-28 pb-24">
 			<div className="flex flex-col gap-20">
 				{/* Identity */}
 				<section className="flex flex-col gap-10">
@@ -111,7 +111,7 @@ export default async function Home() {
 							Selected Works
 						</h2>
 						<Link
-							href="/notes"
+							href="/works"
 							className="text-slate-400 hover:underline"
 						>
 							See all
@@ -279,6 +279,69 @@ export default async function Home() {
 							</div>
 						</li>
 					</ul>
+				</section>
+
+				{/* Journey */}
+				<section className="flex flex-col gap-10">
+					<h2 className="font-medium text-xl tracking-tight">
+						Journey
+					</h2>
+
+					<div className="flex flex-col gap-8">
+						<div className="flex gap-6">
+							<span className="text-slate-400 w-32 shrink-0">
+								2023 — Present
+							</span>
+							<div className="flex flex-col gap-2">
+								<span className="font-medium text-slate-100">
+									Software Engineer · PT. Samudra Inovasi
+									Teknologi
+								</span>
+								<p className="text-slate-400 leading-relaxed">
+									Working on large-scale enterprise systems
+									across energy, telecom, finance, and
+									government sectors, focusing on frontend
+									architecture, performance, and product
+									quality.
+								</p>
+							</div>
+						</div>
+
+						<div className="flex gap-6">
+							<span className="text-slate-400 w-32 shrink-0">
+								2022 — 2023
+							</span>
+							<div className="flex flex-col gap-2">
+								<span className="font-medium text-slate-100">
+									Software Engineer · PT. BIXBOX Teknologi
+									Perkasa
+								</span>
+								<p className="text-slate-400 leading-relaxed">
+									Contributed to web and mobile platforms in
+									logistics, education, healthcare, and
+									government projects, building real-world
+									systems used at national scale.
+								</p>
+							</div>
+						</div>
+
+						<div className="flex gap-6">
+							<span className="text-slate-400 w-32 shrink-0">
+								2018 — 2021
+							</span>
+							<div className="flex flex-col gap-2">
+								<span className="font-medium text-slate-100">
+									Computer Science Diploma · Dian Nuswantoro
+									University
+								</span>
+								<p className="text-slate-400 leading-relaxed">
+									Built strong foundations in software
+									engineering while actively exploring web,
+									mobile development, and system design.
+								</p>
+							</div>
+						</div>
+					</div>
 				</section>
 
 				{/* Contact */}

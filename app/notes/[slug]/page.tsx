@@ -14,13 +14,13 @@ export default async function NotePage({params}: PageProps) {
 	const data = await getNoteBySlug(slug)
 
 	if (!data) {
-		return <div className="pt-36 text-center">Note not found</div>
+		return <div className="pt-28 text-center">Note not found</div>
 	}
 
 	const blocks = renderBlocks(data.blocks)
 
 	return (
-		<main className="max-w-2xl mx-auto pt-36 pb-24">
+		<main className="max-w-2xl mx-auto pt-28 pb-24">
 			<div className="flex flex-col gap-20">
 				<section>
 					<Link

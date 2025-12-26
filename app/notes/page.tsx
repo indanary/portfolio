@@ -8,7 +8,7 @@ export default async function NotesPage() {
 	const notes = await getPublishedNotes()
 
 	return (
-		<main className="max-w-2xl mx-auto pt-36 pb-24">
+		<main className="max-w-2xl mx-auto pt-28 pb-24">
 			<div className="flex flex-col gap-10">
 				{/* Header */}
 				<section className="flex flex-col gap-6">
