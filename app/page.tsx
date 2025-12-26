@@ -1,7 +1,22 @@
+export const runtime = "nodejs"
+
 import Image from "next/image"
 import Link from "next/link"
+import {getPublishedNotes} from "@/lib/notes"
 
-export default function Home() {
+export default async function Home() {
+	const notes = await getPublishedNotes()
+
+	const softwareNotes = notes
+		.filter((n) => n.theme === "Software")
+		.slice(0, 3)
+	const psychologyNotes = notes
+		.filter((n) => n.theme === "Psychology")
+		.slice(0, 3)
+	const philosophyNotes = notes
+		.filter((n) => n.theme === "Philosophy")
+		.slice(0, 3)
+
 	return (
 		<main className="max-w-2xl mx-auto pt-36 pb-24">
 			<div className="flex flex-col gap-20">
@@ -39,95 +54,52 @@ export default function Home() {
 
 					<div className="flex flex-col gap-4">
 						<h3>Software Engineering</h3>
+
 						<ul className="grid grid-cols-1 gap-3">
-							<Link href="/">
-								<li className="flex flex-col gap-2 rounded-lg p-4 border border-slate-800 transition hover:border-slate-900 hover:bg-slate-900">
-									<span>Building Systems That Matter</span>
-									<span className="text-slate-400">
-										Description...
-									</span>
-								</li>
-							</Link>
-							<Link href="/">
-								<li className="flex flex-col gap-2 rounded-lg p-4 border border-slate-800 transition hover:border-slate-900 hover:bg-slate-900">
-									<span>
-										On Working With Real Constraints
-									</span>
-									<span className="text-slate-400">
-										Description...
-									</span>
-								</li>
-							</Link>
-							<Link href="/">
-								<li className="flex flex-col gap-2 rounded-lg p-4 border border-slate-800 transition hover:border-slate-900 hover:bg-slate-900">
-									<span>When Clean Architecture Breaks</span>
-									<span className="text-slate-400">
-										Description...
-									</span>
-								</li>
-							</Link>
+							{softwareNotes.map((n) => (
+								<Link key={n.slug} href={`/notes/${n.slug}`}>
+									<li className="flex flex-col gap-2 rounded-lg p-4 border border-slate-800 transition hover:border-slate-900 hover:bg-slate-900">
+										<span>{n.title}</span>
+										<span className="text-slate-400">
+											{n.description}
+										</span>
+									</li>
+								</Link>
+							))}
 						</ul>
 					</div>
 
 					<div className="flex flex-col gap-4">
 						<h3>Psychology</h3>
+
 						<ul className="grid grid-cols-1 gap-3">
-							<Link href="/">
-								<li className="flex flex-col gap-2 rounded-lg p-4 border border-slate-800 transition hover:border-slate-900 hover:bg-slate-900">
-									<span>
-										Why We Hurt Ourselves When We’re Anxious
-									</span>
-									<span className="text-slate-400">
-										Description...
-									</span>
-								</li>
-							</Link>
-							<Link href="/">
-								<li className="flex flex-col gap-2 rounded-lg p-4 border border-slate-800 transition hover:border-slate-900 hover:bg-slate-900">
-									<span>Learning to Sit With Discomfort</span>
-									<span className="text-slate-400">
-										Description...
-									</span>
-								</li>
-							</Link>
-							<Link href="/">
-								<li className="flex flex-col gap-2 rounded-lg p-4 border border-slate-800 transition hover:border-slate-900 hover:bg-slate-900">
-									<span>On Emotional Maturity</span>
-									<span className="text-slate-400">
-										Description...
-									</span>
-								</li>
-							</Link>
+							{psychologyNotes.map((n) => (
+								<Link key={n.slug} href={`/notes/${n.slug}`}>
+									<li className="flex flex-col gap-2 rounded-lg p-4 border border-slate-800 transition hover:border-slate-900 hover:bg-slate-900">
+										<span>{n.title}</span>
+										<span className="text-slate-400">
+											{n.description}
+										</span>
+									</li>
+								</Link>
+							))}
 						</ul>
 					</div>
 
 					<div className="flex flex-col gap-4">
 						<h3>Philosophy</h3>
+
 						<ul className="grid grid-cols-1 gap-3">
-							<Link href="/">
-								<li className="flex flex-col gap-2 rounded-lg p-4 border border-slate-800 transition hover:border-slate-900 hover:bg-slate-900">
-									<span>On Responsibility</span>
-									<span className="text-slate-400">
-										Description...
-									</span>
-								</li>
-							</Link>
-							<Link href="/">
-								<li className="flex flex-col gap-2 rounded-lg p-4 border border-slate-800 transition hover:border-slate-900 hover:bg-slate-900">
-									<span>On Suffering and Meaning</span>
-									<span className="text-slate-400">
-										Description...
-									</span>
-								</li>
-							</Link>
-							<Link href="/">
-								<li className="flex flex-col gap-2 rounded-lg p-4 border border-slate-800 transition hover:border-slate-900 hover:bg-slate-900">
-									<span>What It Means to Choose</span>
-									<span className="text-slate-400">
-										Description...
-									</span>
-								</li>
-							</Link>
+							{philosophyNotes.map((n) => (
+								<Link key={n.slug} href={`/notes/${n.slug}`}>
+									<li className="flex flex-col gap-2 rounded-lg p-4 border border-slate-800 transition hover:border-slate-900 hover:bg-slate-900">
+										<span>{n.title}</span>
+										<span className="text-slate-400">
+											{n.description}
+										</span>
+									</li>
+								</Link>
+							))}
 						</ul>
 					</div>
 				</section>
