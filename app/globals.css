@@ -155,3 +155,11 @@ body {
 .notion li::marker {
 	color: #e5e7eb;
 }
+
+a {
+	transition: color 0.2s ease, transform 0.15s ease;
+}
+
+a:hover {
+	transform: translateY(-1px);
+}
