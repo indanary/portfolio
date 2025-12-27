@@ -384,20 +384,19 @@ export default async function Home() {
 
 						<div className="flex gap-10">
 							<Link
-								href="/"
-								className="text-slate-400 hover:underline"
+								href="https://www.linkedin.com/in/indana-rishi/"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="text-slate-400 hover:text-white transition"
 							>
 								LinkedIn
 							</Link>
+
 							<Link
-								href="/"
-								className="text-slate-400 hover:underline"
-							>
-								Twitter
-							</Link>
-							<Link
-								href="/"
-								className="text-slate-400 hover:underline"
+								href="https://instagram.com/indanarishi"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="text-slate-400 hover:text-white transition"
 							>
 								Instagram
 							</Link>
