@@ -1,5 +1,11 @@
 import Reveal from "@/components/Reveal"
 
+export const metadata = {
+	title: "About",
+	description:
+		"About Indana Rishi — a software engineer exploring technology, psychology, and thoughtful living.",
+}
+
 export default function AboutPage() {
 	return (
 		<Reveal>

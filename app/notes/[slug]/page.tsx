@@ -3,10 +3,29 @@ export const runtime = "nodejs"
 import Link from "next/link"
 import {getNoteBySlug} from "@/lib/notes"
 import {renderBlocks} from "@/lib/renderNotion"
-import Image from "next/image"
 
 interface PageProps {
 	params: Promise<{slug: string}>
+}
+
+export async function generateMetadata({params}: {params: {slug: string}}) {
+	const data = await getNoteBySlug(params.slug)
+
+	if (!data) {
+		return {title: "Not Found"}
+	}
+
+	const page = data.page as any
+
+	const title = page.properties.Title.title[0]?.plain_text
+	const description =
+		page.properties.Description?.rich_text[0]?.plain_text ||
+		"Essay by Indana Rishi"
+
+	return {
+		title,
+		description,
+	}
 }
 
 export default async function NotePage({params}: PageProps) {
@@ -16,6 +35,8 @@ export default async function NotePage({params}: PageProps) {
 	if (!data) {
 		return <div className="pt-28 text-center">Note not found</div>
 	}
+
+	const page = data.page as any
 
 	const blocks = renderBlocks(data.blocks)
 
@@ -33,7 +54,7 @@ export default async function NotePage({params}: PageProps) {
 
 				<section className="flex flex-col gap-6">
 					<h1 className="font-medium text-xl">
-						{data.page.properties.Title.title[0]?.plain_text}
+						{page.properties.Title.title[0]?.plain_text}
 					</h1>
 				</section>
 

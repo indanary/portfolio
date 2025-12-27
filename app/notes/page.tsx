@@ -4,6 +4,12 @@ import {getPublishedNotes} from "@/lib/notes"
 
 import NoteTabs from "../../components/NoteTabs"
 
+export const metadata = {
+	title: "Notes",
+	description:
+		"Notes and essays by Indana Rishi about software engineering, psychology, and philosophy.",
+}
+
 export default async function NotesPage() {
 	const notes = await getPublishedNotes()
 

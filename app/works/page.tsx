@@ -2,6 +2,12 @@ import {works} from "@/lib/works"
 
 import Reveal from "@/components/Reveal"
 
+export const metadata = {
+	title: "Works",
+	description:
+		"Selected works and real-world projects by Indana Rishi across energy, telecom, government, and startups.",
+}
+
 export default function WorksPage() {
 	return (
 		<Reveal>

@@ -1,10 +1,15 @@
 export const runtime = "nodejs"
 
-import Image from "next/image"
 import Link from "next/link"
 import {getPublishedNotes} from "@/lib/notes"
 
 import Reveal from "@/components/Reveal"
+
+export const metadata = {
+	title: "Home",
+	description:
+		"Indana Rishi — Software Engineer. Essays on software, psychology, philosophy, and thoughtful system building.",
+}
 
 export default async function Home() {
 	const notes = await getPublishedNotes()
@@ -141,11 +146,12 @@ export default async function Home() {
 						<ul className="grid grid-cols-1 gap-3 sm:gap-4">
 							<li className="rounded-lg p-4 border border-slate-900 transition hover:border-slate-900 hover:bg-slate-900">
 								<div className="flex items-start gap-4">
-									<Image
+									<img
 										src="/logos/pertamina.jpeg"
 										alt="Pertamina"
 										width={36}
 										height={36}
+										loading="lazy"
 										className="mt-1"
 									/>
 									<div className="flex-1">
@@ -168,11 +174,12 @@ export default async function Home() {
 
 							<li className="rounded-lg p-4 border border-slate-900 transition hover:border-slate-900 hover:bg-slate-900">
 								<div className="flex items-start gap-4">
-									<Image
+									<img
 										src="/logos/pln.jpg"
 										alt="PLN"
 										width={36}
 										height={36}
+										loading="lazy"
 										className="mt-1"
 									/>
 									<div className="flex-1">
@@ -195,11 +202,12 @@ export default async function Home() {
 
 							<li className="rounded-lg p-4 border border-slate-900 transition hover:border-slate-900 hover:bg-slate-900">
 								<div className="flex items-start gap-4">
-									<Image
+									<img
 										src="/logos/telkomsel.jpg"
 										alt="Telkomsel"
 										width={36}
 										height={36}
+										loading="lazy"
 										className="mt-1"
 									/>
 									<div className="flex-1">
@@ -223,11 +231,12 @@ export default async function Home() {
 
 							<li className="rounded-lg p-4 border border-slate-900 transition hover:border-slate-900 hover:bg-slate-900">
 								<div className="flex items-start gap-4">
-									<Image
+									<img
 										src="/logos/lion-parcel.png"
 										alt="Lion Parcel"
 										width={36}
 										height={36}
+										loading="lazy"
 										className="mt-1"
 									/>
 									<div className="flex-1">
@@ -250,11 +259,12 @@ export default async function Home() {
 
 							<li className="rounded-lg p-4 border border-slate-900 transition hover:border-slate-900 hover:bg-slate-900">
 								<div className="flex items-start gap-4">
-									<Image
+									<img
 										src="/logos/learn.jpg"
 										alt="LEARN"
 										width={36}
 										height={36}
+										loading="lazy"
 										className="mt-1"
 									/>
 									<div className="flex-1">
@@ -277,11 +287,12 @@ export default async function Home() {
 
 							<li className="rounded-lg p-4 border border-slate-900 transition hover:border-slate-900 hover:bg-slate-900">
 								<div className="flex items-start gap-4">
-									<Image
+									<img
 										src="/logos/biofarma.jpg"
 										alt="Biofarma"
 										width={36}
 										height={36}
+										loading="lazy"
 										className="mt-1"
 									/>
 									<div className="flex-1">
