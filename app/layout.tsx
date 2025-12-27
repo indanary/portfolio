@@ -1,4 +1,3 @@
-import type {Metadata} from "next"
 import {Geist, Geist_Mono} from "next/font/google"
 import "./globals.css"
 
@@ -22,7 +21,7 @@ export const metadata = {
 	},
 	description:
 		"Personal website of Indana Rishi. Writing about software engineering, psychology, philosophy, and building thoughtful systems.",
-	metadataBase: new URL("https://YOURDOMAIN.com"),
+	metadataBase: new URL("https://indanary.com"),
 	openGraph: {
 		title: "Indana Rishi",
 		description:
@@ -54,6 +53,13 @@ export default function RootLayout({
 				<Header />
 				{children}
 			</body>
+
+			<head>
+				<meta
+					name="google-site-verification"
+					content="IbSCkI7_PJbd30hcNP7wurKNrIrDPMeTJ7i3sITPBKc"
+				/>
+			</head>
 		</html>
 	)
 }
