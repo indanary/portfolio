@@ -1,4 +1,5 @@
 export const runtime = "nodejs"
+export const revalidate = 60
 
 import {getPublishedNotes} from "@/lib/notes"
 
