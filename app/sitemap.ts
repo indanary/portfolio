@@ -3,7 +3,7 @@ import {getPublishedNotes} from "@/lib/notes"
 export default async function sitemap() {
 	const notes = await getPublishedNotes()
 
-	const base = "https://indanary.com"
+	const base = "https://www.indanary.com"
 
 	const noteUrls = notes.map((n) => ({
 		url: `${base}/notes/${n.slug}`,
