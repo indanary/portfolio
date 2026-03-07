@@ -35,6 +35,8 @@ export async function getPublishedNotes() {
 		slug: getText(page.properties.Slug),
 		theme: page.properties.Theme?.select?.name || "",
 		description: getText(page.properties.Description),
+		topic: page.properties.Topic?.select?.name || "",
+		date: page.properties.Date?.date?.start || "",
 	}))
 }
 

@@ -4,13 +4,16 @@ export const revalidate = 60
 import Link from "next/link"
 import {getNoteBySlug} from "@/lib/notes"
 import {renderBlocks} from "@/lib/renderNotion"
+import {getTopicColor} from "@/lib/topic"
+import {formatDate} from "@/lib/date"
 
 interface PageProps {
 	params: Promise<{slug: string}>
 }
 
-export async function generateMetadata({params}: {params: {slug: string}}) {
-	const data = await getNoteBySlug(params.slug)
+export async function generateMetadata({params}: PageProps) {
+	const {slug} = await params
+	const data = await getNoteBySlug(slug)
 
 	if (!data) {
 		return {title: "Not Found"}
@@ -38,8 +41,13 @@ export default async function NotePage({params}: PageProps) {
 	}
 
 	const page = data.page as any
-
 	const blocks = renderBlocks(data.blocks)
+
+	const title = page.properties.Title.title[0]?.plain_text
+	const topic = page.properties.Topic?.select?.name ?? "General"
+	const date = page.properties.Date?.date?.start
+
+	const topicStyle = getTopicColor(topic)
 
 	return (
 		<main className="max-w-[68ch] mx-auto px-5 sm:px-6 pt-24 sm:pt-28 pb-20 sm:pb-24">
@@ -53,10 +61,22 @@ export default async function NotePage({params}: PageProps) {
 					</Link>
 				</section>
 
-				<section className="flex flex-col gap-6">
-					<h1 className="font-medium text-xl">
-						{page.properties.Title.title[0]?.plain_text}
-					</h1>
+				<section className="flex flex-col gap-4">
+					<div className="flex justify-between items-center text-sm">
+						<span
+							className={`px-2 py-1 rounded border ${topicStyle}`}
+						>
+							{topic}
+						</span>
+
+						{date && (
+							<span className="text-slate-400">
+								{formatDate(date)}
+							</span>
+						)}
+					</div>
+
+					<h1 className="font-medium text-xl mt-4">{title}</h1>
 				</section>
 
 				<section className="notion">

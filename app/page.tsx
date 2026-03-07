@@ -5,6 +5,7 @@ import Link from "next/link"
 import {getPublishedNotes} from "@/lib/notes"
 
 import Reveal from "@/components/Reveal"
+import NoteCard from "@/components/NoteCard"
 
 export const metadata = {
 	title: "Home",
@@ -72,17 +73,14 @@ export default async function Home() {
 
 							<ul className="grid grid-cols-1 gap-3 sm:gap-4">
 								{softwareNotes.map((n) => (
-									<Link
+									<NoteCard
 										key={n.slug}
+										title={n.title}
+										description={n.description}
+										date={n.date}
+										topic={n.topic}
 										href={`/notes/${n.slug}`}
-									>
-										<li className="flex flex-col gap-2 rounded-lg p-4 border border-slate-800 transition hover:border-slate-900 hover:bg-slate-900">
-											<span>{n.title}</span>
-											<span className="text-slate-400">
-												{n.description}
-											</span>
-										</li>
-									</Link>
+									/>
 								))}
 							</ul>
 						</div>
@@ -92,17 +90,14 @@ export default async function Home() {
 
 							<ul className="grid grid-cols-1 gap-3 sm:gap-4">
 								{psychologyNotes.map((n) => (
-									<Link
+									<NoteCard
 										key={n.slug}
+										title={n.title}
+										description={n.description}
+										date={n.date}
+										topic={n.topic}
 										href={`/notes/${n.slug}`}
-									>
-										<li className="flex flex-col gap-2 rounded-lg p-4 border border-slate-800 transition hover:border-slate-900 hover:bg-slate-900">
-											<span>{n.title}</span>
-											<span className="text-slate-400">
-												{n.description}
-											</span>
-										</li>
-									</Link>
+									/>
 								))}
 							</ul>
 						</div>
@@ -112,17 +107,14 @@ export default async function Home() {
 
 							<ul className="grid grid-cols-1 gap-3 sm:gap-4">
 								{philosophyNotes.map((n) => (
-									<Link
+									<NoteCard
 										key={n.slug}
+										title={n.title}
+										description={n.description}
+										date={n.date}
+										topic={n.topic}
 										href={`/notes/${n.slug}`}
-									>
-										<li className="flex flex-col gap-2 rounded-lg p-4 border border-slate-800 transition hover:border-slate-900 hover:bg-slate-900">
-											<span>{n.title}</span>
-											<span className="text-slate-400">
-												{n.description}
-											</span>
-										</li>
-									</Link>
+									/>
 								))}
 							</ul>
 						</div>

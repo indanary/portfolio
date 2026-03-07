@@ -40,6 +40,8 @@ export default function NotesTabs({notes}: {notes: any[]}) {
 							key={n.slug}
 							title={n.title}
 							description={n.description}
+							date={n.date}
+							topic={n.topic}
 							href={`/notes/${n.slug}`}
 						/>
 					))}
