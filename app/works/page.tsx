@@ -20,44 +20,90 @@ export default function WorksPage() {
 					</p>
 				</header>
 
-				<section className="space-y-24">
-					{works.map((w, i) => (
-						<article key={i} className="space-y-6">
-							{/* Title row */}
-							<div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2">
-								<h2 className="text-lg font-medium leading-tight">
-									{w.company}
-								</h2>
-								<p className="text-sm text-slate-400">
-									{w.role}
+				<section className="mb-24 space-y-10">
+					<h2 className="text-lg font-medium">Journey</h2>
+
+					<div className="space-y-8">
+						<div className="flex gap-6">
+							<span className="text-slate-400 w-32 shrink-0">
+								2023 — Present
+							</span>
+
+							<div>
+								<span className="font-medium">
+									Software Engineer · PT. Samudra Inovasi
+									Teknologi
+								</span>
+
+								<p className="text-slate-400 leading-relaxed">
+									Building enterprise systems across energy,
+									telecom, finance, and government sectors.
 								</p>
 							</div>
+						</div>
 
-							{/* Description */}
-							<p className="text-slate-400 leading-relaxed">
-								{w.description}
-							</p>
+						<div className="flex gap-6">
+							<span className="text-slate-400 w-32 shrink-0">
+								2022 — 2023
+							</span>
 
-							{/* Highlights */}
-							<ul className="list-disc pl-5 space-y-2 text-slate-300">
-								{w.highlights.map((h, j) => (
-									<li key={j}>{h}</li>
-								))}
-							</ul>
+							<div>
+								<span className="font-medium">
+									Software Engineer · PT. BIXBOX Teknologi
+									Perkasa
+								</span>
 
-							{/* Tech stack */}
-							<div className="flex flex-wrap gap-2 pt-3">
-								{w.tech.map((t) => (
-									<span
-										key={t}
-										className="text-xs px-2 py-1 rounded bg-slate-800 text-slate-300"
-									>
-										{t}
-									</span>
-								))}
+								<p className="text-slate-400 leading-relaxed">
+									Contributed to web and mobile platforms
+									across logistics, education, and healthcare.
+								</p>
 							</div>
-						</article>
-					))}
+						</div>
+					</div>
+				</section>
+
+				<section className="space-y-10">
+					<h2 className="text-lg font-medium">All Works</h2>
+
+					<div className="space-y-24">
+						{works.map((w, i) => (
+							<article key={i} className="space-y-6">
+								{/* Title row */}
+								<div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2">
+									<h2 className="text-lg font-medium leading-tight">
+										{w.company}
+									</h2>
+									<p className="text-sm text-slate-400">
+										{w.role}
+									</p>
+								</div>
+
+								{/* Description */}
+								<p className="text-slate-400 leading-relaxed">
+									{w.description}
+								</p>
+
+								{/* Highlights */}
+								<ul className="list-disc pl-5 space-y-2 text-slate-300">
+									{w.highlights.map((h, j) => (
+										<li key={j}>{h}</li>
+									))}
+								</ul>
+
+								{/* Tech stack */}
+								<div className="flex flex-wrap gap-2 pt-3">
+									{w.tech.map((t) => (
+										<span
+											key={t}
+											className="text-xs px-2 py-1 rounded bg-slate-800 text-slate-300"
+										>
+											{t}
+										</span>
+									))}
+								</div>
+							</article>
+						))}
+					</div>
 				</section>
 			</main>
 		</Reveal>
