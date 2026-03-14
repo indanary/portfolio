@@ -1,16 +1,18 @@
-import {Geist, Geist_Mono} from "next/font/google"
 import "./globals.css"
+import {Merriweather} from "next/font/google"
+import {JetBrains_Mono} from "next/font/google"
+
 import Header from "@/components/Header"
 
-const geistSans = Geist({
-	variable: "--font-geist-sans",
+const merriweather = Merriweather({
 	subsets: ["latin"],
-	display: "swap",
+	weight: ["300", "400", "700"],
+	variable: "--font-serif",
 })
 
-const geistMono = Geist_Mono({
-	variable: "--font-geist-mono",
+const mono = JetBrains_Mono({
 	subsets: ["latin"],
+	variable: "--font-mono",
 })
 
 export const metadata = {
@@ -58,7 +60,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
 			</head>
 
 			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+				className={`${merriweather.variable} ${mono.variable} antialiased`}
 			>
 				<Header />
 				{children}
