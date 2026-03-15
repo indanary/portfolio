@@ -35,10 +35,11 @@ export default async function Home() {
 							<NameMotion />
 						</div>
 
-						<div className="flex flex-col gap-4 items-center text-lg sm:text-xl lg:text-2xl max-w-[36ch]">
+						<div className="flex flex-col gap-4 items-center text-lg sm:text-xl lg:text-2xl max-w-[40ch]">
 							<p className="leading-relaxed">
 								A software engineer curious about how systems
-								work — including humans.
+								work
+								<br />— including humans.
 							</p>
 
 							<p className="text-[var(--muted)] text-sm sm:text-base lg:text-lg">
