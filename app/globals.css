@@ -27,8 +27,8 @@
 }
 
 * {
-	transition: background-color 500ms ease, color 500ms ease,
-		border-color 500ms ease, fill 500ms ease, stroke 500ms ease;
+	transition: background-color 350ms ease, color 350ms ease,
+		border-color 350ms ease, fill 350ms ease, stroke 350ms ease;
 }
 
 /* =========================
