@@ -1,10 +1,12 @@
 const topicColors: Record<string, string> = {
-	JavaScript: "bg-yellow-500/10 text-yellow-400 border-yellow-500/20",
-	React: "bg-blue-500/10 text-blue-400 border-blue-500/20",
-	CSS: "bg-pink-500/10 text-pink-400 border-pink-500/20",
+	JavaScript:
+		"bg-amber-500/10 text-amber-600 border-amber-500/20 dark:text-amber-400",
+	React: "bg-sky-500/10 text-sky-600 border-sky-500/20 dark:text-sky-400",
+	CSS: "bg-pink-500/10 text-pink-600 border-pink-500/20 dark:text-pink-400",
 }
 
-const defaultTopicColor = "bg-slate-500/10 text-slate-300 border-slate-500/20"
+const defaultTopicColor =
+	"bg-[var(--callout-bg)] text-[var(--muted)] border-[var(--border)]"
 
 export function getTopicColor(topic: string) {
 	return topicColors[topic] ?? defaultTopicColor

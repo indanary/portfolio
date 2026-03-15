@@ -20,24 +20,36 @@ export default function NoteCard({
 	const topicStyle = getTopicColor(topic)
 
 	return (
-		<Link href={href}>
-			<li className="flex flex-col gap-3 rounded-lg p-4 border border-slate-800 transition hover:border-slate-900 hover:bg-slate-900">
-				<div className="flex items-center justify-between">
-					<span
-						className={`text-xs px-2 py-1 rounded border ${topicStyle}`}
-					>
-						{topic}
-					</span>
+		<li>
+			<Link
+				href={href}
+				className="group block py-6 border-b border-[var(--border)] transition"
+			>
+				<div className="flex flex-col gap-3">
+					{/* Title */}
+					<h3 className="font-medium text-lg leading-snug tracking-tight transition group-hover:translate-x-[3px]">
+						{title}
+					</h3>
 
-					<span className="text-xs text-slate-400">
-						{formatDate(date)}
-					</span>
+					{/* Description */}
+					<p className="text-sm text-[var(--muted)] leading-relaxed max-w-[60ch]">
+						{description}
+					</p>
+
+					{/* Meta */}
+					<div className="flex items-center gap-3 text-xs text-[var(--muted)] pt-1">
+						<span
+							className={`px-2 py-[2px] rounded border ${topicStyle}`}
+						>
+							{topic}
+						</span>
+
+						<span className="opacity-40">•</span>
+
+						<time>{formatDate(date)}</time>
+					</div>
 				</div>
-
-				<span className="font-medium">{title}</span>
-
-				<span className="text-slate-400 text-sm">{description}</span>
-			</li>
-		</Link>
+			</Link>
+		</li>
 	)
 }

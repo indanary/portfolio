@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 
 import {useState} from "react"
+import {motion, AnimatePresence} from "framer-motion"
 
 import NoteCard from "./NoteCard"
 
@@ -10,31 +12,57 @@ const themes = [
 	{key: "Philosophy", label: "Philosophy"},
 ]
 
-export default function NotesTabs({notes}: {notes: any[]}) {
+export default function NoteTabs({notes}: {notes: any[]}) {
 	const [active, setActive] = useState("Software")
 
 	const filtered = notes.filter((n) => n.theme === active)
 
 	return (
-		<>
-			<section className="flex gap-10 border-b border-slate-800 pb-3">
-				{themes.map((t) => (
-					<button
-						key={t.key}
-						onClick={() => setActive(t.key)}
-						className={`transition cursor-pointer ${
-							active === t.key
-								? "text-white border-b border-white pb-2"
-								: "text-slate-400 hover:text-white"
-						}`}
-					>
-						{t.label}
-					</button>
-				))}
-			</section>
+		<div className="flex flex-col gap-8 sm:gap-10">
+			{/* Tabs */}
+			<div className="overflow-x-auto">
+				<div className="flex gap-6 sm:gap-8 border-b border-[var(--border)] min-w-max">
+					{themes.map((t) => {
+						const isActive = active === t.key
 
-			<section>
-				<ul className="grid grid-cols-1 gap-3 sm:gap-4">
+						return (
+							<button
+								key={t.key}
+								onClick={() => setActive(t.key)}
+								className="relative pb-3 text-sm whitespace-nowrap transition cursor-pointer"
+							>
+								<span
+									className={`transition ${
+										isActive
+											? "text-[var(--foreground)]"
+											: "text-[var(--muted)] hover:text-[var(--foreground)]"
+									}`}
+								>
+									{t.label}
+								</span>
+
+								{isActive && (
+									<motion.div
+										layoutId="tab-indicator"
+										className="absolute left-0 right-0 -bottom-px h-px bg-[var(--foreground)]"
+									/>
+								)}
+							</button>
+						)
+					})}
+				</div>
+			</div>
+
+			{/* Notes list */}
+			<AnimatePresence mode="wait">
+				<motion.ul
+					key={active}
+					initial={{opacity: 0, y: 10}}
+					animate={{opacity: 1, y: 0}}
+					exit={{opacity: 0, y: -10}}
+					transition={{duration: 0.2}}
+					className="flex flex-col gap-5 sm:gap-6"
+				>
 					{filtered.map((n) => (
 						<NoteCard
 							key={n.slug}
@@ -45,8 +73,8 @@ export default function NotesTabs({notes}: {notes: any[]}) {
 							href={`/notes/${n.slug}`}
 						/>
 					))}
-				</ul>
-			</section>
-		</>
+				</motion.ul>
+			</AnimatePresence>
+		</div>
 	)
 }

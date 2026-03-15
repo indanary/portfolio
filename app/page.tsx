@@ -2,10 +2,13 @@ export const runtime = "nodejs"
 export const revalidate = 60
 
 import Link from "next/link"
+
 import {getPublishedNotes} from "@/lib/notes"
 
 import Reveal from "@/components/Reveal"
 import NoteCard from "@/components/NoteCard"
+import NameMotion from "@/components/NameMotion"
+import HeroScroll from "@/components/HeroScroll"
 
 export const metadata = {
 	title: "Home",
@@ -16,141 +19,68 @@ export const metadata = {
 export default async function Home() {
 	const notes = await getPublishedNotes()
 
-	const softwareNotes = notes
-		.filter((n) => n.theme === "Software")
-		.slice(0, 3)
-	const psychologyNotes = notes
-		.filter((n) => n.theme === "Psychology")
-		.slice(0, 3)
-	const philosophyNotes = notes
-		.filter((n) => n.theme === "Philosophy")
-		.slice(0, 3)
+	const featuredNotes = notes.slice(0, 4)
 
 	return (
-		<main className="max-w-[68ch] mx-auto px-5 sm:px-6 pt-24 sm:pt-28 pb-20 sm:pb-24">
-			<div className="flex flex-col gap-16 sm:gap-24">
-				{/* Identity */}
+		<main className="mx-auto px-5 sm:px-6">
+			{/* Hero */}
+			<HeroScroll>
 				<Reveal>
-					<section className="flex flex-col gap-10">
-						<div className="flex flex-col">
-							<h1 className="font-medium text-lg sm:text-xl">
-								Indana Rishi
-							</h1>
-
-							<span className="text-slate-400">
-								Software Engineer
+					<section className="flex flex-col gap-10 sm:gap-12 items-center text-center">
+						<div className="relative">
+							<span className="absolute -top-3 sm:-top-2 left-0.5 sm:left-1.5 text-xs sm:text-sm tracking-wide text-[var(--muted)]">
+								Hi, I&apos;m
 							</span>
+
+							<NameMotion />
 						</div>
-						<span className="text-base sm:text-lg leading-relaxed">
-							I’m a human who happens to be a software engineer —
-							and here’s how I think.
-						</span>
-						<span className="text-slate-400">
-							I write about software engineering, psychology, and
-							philosophy as a way to understand the world and
-							myself.
-						</span>
+
+						<div className="flex flex-col gap-4 items-center text-lg sm:text-xl lg:text-2xl max-w-[36ch]">
+							<p className="leading-relaxed">
+								A software engineer curious about how systems
+								work — including humans.
+							</p>
+
+							<p className="text-[var(--muted)] text-sm sm:text-base lg:text-lg">
+								Here you&apos;ll find notes on software
+								engineering, psychology, philosophy, and the
+								ideas that live between them.
+							</p>
+						</div>
 					</section>
 				</Reveal>
+			</HeroScroll>
 
-				{/* Notes */}
+			{/* Content sections */}
+			<div className="flex flex-col items-center gap-20 sm:gap-24 pb-20 sm:pb-24 px-5 sm:px-6">
+				{/* Featured Notes */}
 				<Reveal>
-					<section className="flex flex-col gap-10">
-						<div className="flex items-center justify-between">
+					<section className="flex flex-col gap-8 sm:gap-10 w-full max-w-[68ch]">
+						<div className="flex items-start sm:items-center justify-between gap-4">
 							<h2 className="font-medium text-lg sm:text-xl tracking-tight">
-								Notes
+								Featured Notes
 							</h2>
+
 							<Link
 								href="/notes"
-								className="text-slate-400 hover:underline"
+								className="shrink-0 text-sm text-[var(--muted)] hover:opacity-70 transition"
 							>
-								See all
+								View all
 							</Link>
 						</div>
 
-						<div className="flex flex-col gap-4">
-							<h3>Software Engineering</h3>
-
-							<ul className="grid grid-cols-1 gap-3 sm:gap-4">
-								{softwareNotes.map((n) => (
-									<NoteCard
-										key={n.slug}
-										title={n.title}
-										description={n.description}
-										date={n.date}
-										topic={n.topic}
-										href={`/notes/${n.slug}`}
-									/>
-								))}
-							</ul>
-						</div>
-
-						<div className="flex flex-col gap-4">
-							<h3>Psychology</h3>
-
-							<ul className="grid grid-cols-1 gap-3 sm:gap-4">
-								{psychologyNotes.map((n) => (
-									<NoteCard
-										key={n.slug}
-										title={n.title}
-										description={n.description}
-										date={n.date}
-										topic={n.topic}
-										href={`/notes/${n.slug}`}
-									/>
-								))}
-							</ul>
-						</div>
-
-						<div className="flex flex-col gap-4">
-							<h3>Philosophy</h3>
-
-							<ul className="grid grid-cols-1 gap-3 sm:gap-4">
-								{philosophyNotes.map((n) => (
-									<NoteCard
-										key={n.slug}
-										title={n.title}
-										description={n.description}
-										date={n.date}
-										topic={n.topic}
-										href={`/notes/${n.slug}`}
-									/>
-								))}
-							</ul>
-						</div>
-					</section>
-				</Reveal>
-
-				{/* Contact */}
-				<Reveal>
-					<section className="flex flex-col gap-10">
-						<h2 className="font-medium text-lg sm:text-xl tracking-tight">
-							Connect
-						</h2>
-
-						<span>
-							Feel free to contact me at indanary@gmail.com
-						</span>
-
-						<div className="flex gap-10">
-							<Link
-								href="https://www.linkedin.com/in/indana-rishi/"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="text-slate-400 hover:text-white transition"
-							>
-								LinkedIn
-							</Link>
-
-							<Link
-								href="https://instagram.com/indanarishi"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="text-slate-400 hover:text-white transition"
-							>
-								Instagram
-							</Link>
-						</div>
+						<ul className="flex flex-col gap-6">
+							{featuredNotes.map((n) => (
+								<NoteCard
+									key={n.slug}
+									title={n.title}
+									description={n.description}
+									date={n.date}
+									topic={n.topic}
+									href={`/notes/${n.slug}`}
+								/>
+							))}
+						</ul>
 					</section>
 				</Reveal>
 			</div>

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export function renderBlocks(blocks: any[]) {
 	const result: any[] = []
 	let listBuffer: any = null
@@ -9,8 +10,9 @@ export function renderBlocks(blocks: any[]) {
 					listBuffer = {type: "ul", items: []}
 					result.push(listBuffer)
 				}
+
 				listBuffer.items.push(
-					getText(block.bulleted_list_item.rich_text),
+					getRichText(block.bulleted_list_item.rich_text),
 				)
 				break
 
@@ -19,8 +21,9 @@ export function renderBlocks(blocks: any[]) {
 					listBuffer = {type: "ol", items: []}
 					result.push(listBuffer)
 				}
+
 				listBuffer.items.push(
-					getText(block.numbered_list_item.rich_text),
+					getRichText(block.numbered_list_item.rich_text),
 				)
 				break
 
@@ -36,23 +39,24 @@ export function renderBlocks(blocks: any[]) {
 function normalBlock(block: any) {
 	switch (block.type) {
 		case "paragraph":
-			return {type: "p", text: getText(block.paragraph.rich_text)}
+			return {type: "p", text: getRichText(block.paragraph.rich_text)}
 
 		case "heading_1":
-			return {type: "h1", text: getText(block.heading_1.rich_text)}
+			return {type: "h1", text: getRichText(block.heading_1.rich_text)}
 
 		case "heading_2":
-			return {type: "h2", text: getText(block.heading_2.rich_text)}
+			return {type: "h2", text: getRichText(block.heading_2.rich_text)}
 
 		case "heading_3":
-			return {type: "h3", text: getText(block.heading_3.rich_text)}
+			return {type: "h3", text: getRichText(block.heading_3.rich_text)}
 
 		case "quote":
-			return {type: "quote", text: getText(block.quote.rich_text)}
+			return {type: "quote", text: getRichText(block.quote.rich_text)}
 
 		case "code":
 			return {
 				type: "code",
+				language: block.code.language,
 				text: block.code.rich_text
 					.map((t: any) => t.plain_text)
 					.join(""),
@@ -65,27 +69,48 @@ function normalBlock(block: any) {
 					block.image.type === "external"
 						? block.image.external.url
 						: block.image.file.url,
-				alt: getText(block.image.caption),
+				alt: getRichText(block.image.caption),
 			}
 
 		case "divider":
 			return {type: "divider"}
 
 		case "callout":
-			return {type: "callout", text: getText(block.callout.rich_text)}
+			return {
+				type: "callout",
+				text: getRichText(block.callout.rich_text),
+			}
 
 		default:
 			return null
 	}
 }
 
-function getText(richText: any[]) {
+function getRichText(richText: any[]) {
 	return richText
 		.map((t) => {
-			if (t.annotations?.code) {
-				return `<code>${t.plain_text}</code>`
+			let text = escapeHTML(t.plain_text)
+
+			const a = t.annotations || {}
+
+			if (a.code) text = `<code>${text}</code>`
+			if (a.bold) text = `<strong>${text}</strong>`
+			if (a.italic) text = `<em>${text}</em>`
+			if (a.underline) text = `<u>${text}</u>`
+			if (a.strikethrough) text = `<s>${text}</s>`
+
+			if (t.href) {
+				text = `<a href="${t.href}" target="_blank" rel="noopener noreferrer">${text}</a>`
 			}
-			return t.plain_text
+
+			return text
 		})
 		.join("")
+}
+
+function escapeHTML(str: string) {
+	return str
+		.replace(/&/g, "&amp;")
+		.replace(/</g, "&lt;")
+		.replace(/>/g, "&gt;")
 }
