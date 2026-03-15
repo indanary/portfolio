@@ -26,9 +26,26 @@
 	--callout-bg: #141414;
 }
 
-* {
-	transition: background-color 350ms ease, color 350ms ease,
-		border-color 350ms ease, fill 350ms ease, stroke 350ms ease;
+html,
+body,
+a,
+button,
+header,
+footer {
+	transition: background-color 500ms ease, color 500ms ease,
+		border-color 500ms ease;
+}
+
+@media (max-width: 640px) {
+	html,
+	body,
+	a,
+	button,
+	header,
+	footer {
+		transition: background-color 150ms ease, color 150ms ease,
+			border-color 150ms ease;
+	}
 }
 
 /* =========================
