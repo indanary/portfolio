@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import "server-only"
 import {notion} from "./notion"
 
-const databaseId = process.env.NOTION_DATABASE_ID
+const databaseId = process.env.NOTION_DATASOURCE_ID
 
 function getText(prop: any) {
 	if (!prop) return ""
@@ -15,22 +16,23 @@ function getText(prop: any) {
 }
 
 export async function getPublishedNotes() {
-	const res = await notion.search({
+	const res = await notion.dataSources.query({
+		data_source_id: databaseId!,
 		filter: {
-			property: "object",
-			value: "page",
+			property: "Status",
+			select: {
+				equals: "Published",
+			},
 		},
-		sort: {
-			direction: "descending",
-			timestamp: "last_edited_time",
-		},
+		sorts: [
+			{
+				timestamp: "last_edited_time",
+				direction: "descending",
+			},
+		],
 	})
 
-	const pages = res.results.filter(
-		(p: any) => p.parent?.database_id === databaseId,
-	)
-
-	return pages.map((page: any) => ({
+	return res.results.map((page: any) => ({
 		title: getText(page.properties.Title),
 		slug: getText(page.properties.Slug),
 		theme: page.properties.Theme?.select?.name || "",
@@ -40,23 +42,51 @@ export async function getPublishedNotes() {
 	}))
 }
 
+async function getAllBlocks(blockId: string): Promise<any[]> {
+	const blocks: any[] = []
+
+	let cursor: string | undefined = undefined
+
+	do {
+		const res = await notion.blocks.children.list({
+			block_id: blockId,
+			start_cursor: cursor,
+		})
+
+		for (const block of res.results) {
+			let children: any[] = []
+
+			if (block.has_children) {
+				children = await getAllBlocks(block.id)
+			}
+
+			blocks.push({
+				...block,
+				children,
+			})
+		}
+
+		cursor = res.has_more ? res.next_cursor : undefined
+	} while (cursor)
+
+	return blocks
+}
+
 export async function getNoteBySlug(slug: string) {
-	const res = await notion.search({
-		query: slug,
-		filter: {property: "object", value: "page"},
+	const res = await notion.dataSources.query({
+		data_source_id: databaseId!,
+		filter: {
+			property: "Slug",
+			rich_text: {
+				equals: slug,
+			},
+		},
 	})
 
-	const page = res.results.find(
-		(p: any) =>
-			p.parent?.database_id === databaseId &&
-			getText(p.properties.Slug) === slug,
-	)
-
+	const page = res.results[0]
 	if (!page) return null
 
-	const blocks = await notion.blocks.children.list({
-		block_id: page.id,
-	})
+	const blocks = await getAllBlocks(page.id)
 
-	return {page, blocks: blocks.results}
+	return {page, blocks}
 }
