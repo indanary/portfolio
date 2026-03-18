@@ -42,6 +42,10 @@ export async function getPublishedNotes() {
 	}))
 }
 
+function isFullBlock(block: any): block is {has_children: boolean; id: string} {
+	return "has_children" in block
+}
+
 async function getAllBlocks(blockId: string): Promise<any[]> {
 	const blocks: any[] = []
 
@@ -56,7 +60,7 @@ async function getAllBlocks(blockId: string): Promise<any[]> {
 		for (const block of res.results) {
 			let children: any[] = []
 
-			if (block.has_children) {
+			if (isFullBlock(block) && block.has_children) {
 				children = await getAllBlocks(block.id)
 			}
 
@@ -66,7 +70,7 @@ async function getAllBlocks(blockId: string): Promise<any[]> {
 			})
 		}
 
-		cursor = res.has_more ? res.next_cursor : undefined
+		cursor = res.has_more ? res.next_cursor ?? undefined : undefined
 	} while (cursor)
 
 	return blocks
