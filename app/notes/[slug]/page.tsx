@@ -139,14 +139,26 @@ export default async function NotePage({params}: PageProps) {
 								)
 
 							if (b.type === "quote")
-								return <blockquote key={i}>{b.text}</blockquote>
+								return (
+									<blockquote
+										key={i}
+										dangerouslySetInnerHTML={{
+											__html: b.text,
+										}}
+									/>
+								)
 
 							if (b.type === "ul")
 								return (
 									<ul key={i}>
 										{b.items.map(
 											(item: string, j: number) => (
-												<li key={j}>{item}</li>
+												<li
+													key={j}
+													dangerouslySetInnerHTML={{
+														__html: item,
+													}}
+												/>
 											),
 										)}
 									</ul>
@@ -157,7 +169,12 @@ export default async function NotePage({params}: PageProps) {
 									<ol key={i}>
 										{b.items.map(
 											(item: string, j: number) => (
-												<li key={j}>{item}</li>
+												<li
+													key={j}
+													dangerouslySetInnerHTML={{
+														__html: item,
+													}}
+												/>
 											),
 										)}
 									</ol>
@@ -178,9 +195,13 @@ export default async function NotePage({params}: PageProps) {
 
 							if (b.type === "callout")
 								return (
-									<div key={i} className="callout">
-										{b.text}
-									</div>
+									<div
+										key={i}
+										className="callout"
+										dangerouslySetInnerHTML={{
+											__html: b.text,
+										}}
+									/>
 								)
 
 							if (b.type === "image")

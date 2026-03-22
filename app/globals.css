@@ -74,6 +74,11 @@ body {
 	overflow-x: hidden;
 }
 
+::selection {
+	background: var(--border);
+	color: var(--foreground);
+}
+
 /* =========================
    Article Layout
 ========================= */
@@ -82,7 +87,7 @@ body {
 	width: 100%;
 	max-width: 68ch;
 	margin: auto;
-	line-height: 1.85;
+	line-height: 1.5;
 
 	overflow-wrap: anywhere;
 	word-break: break-word;
@@ -170,6 +175,14 @@ body {
    Lists
 ========================= */
 
+.notion ul {
+	list-style: disc;
+}
+
+.notion ol {
+	list-style: decimal;
+}
+
 .notion ul,
 .notion ol {
 	margin: 1.6em 0;
@@ -237,7 +250,8 @@ body {
 	max-width: 100%;
 	height: auto;
 	display: block;
-	margin: 2.5em auto;
+	margin: 3em auto;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
 /* =========================
@@ -266,6 +280,14 @@ body {
 	content: " ↗";
 	font-size: 0.85em;
 	color: var(--muted);
+}
+
+.notion strong {
+	font-weight: 600;
+}
+
+.notion em {
+	font-style: italic;
 }
 
 /* =========================
@@ -360,6 +382,7 @@ a:hover {
 	.notion pre {
 		padding: 1em;
 		font-size: 0.85rem;
+		line-height: 1.7;
 	}
 
 	/* Callouts */
