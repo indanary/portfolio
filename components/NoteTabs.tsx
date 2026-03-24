@@ -31,7 +31,7 @@ export default function NoteTabs({notes}: {notes: any[]}) {
 		return acc
 	}, {} as Record<string, number>)
 
-	const topics = notes
+	const topics: Record<string, number> = notes
 		.filter((n) => n.theme === active)
 		.reduce((acc, note) => {
 			const topic = note.topic || "Other"
