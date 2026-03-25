@@ -41,7 +41,7 @@ export default function NoteTabs({notes}: {notes: any[]}) {
 		}, {} as Record<string, number>)
 
 	return (
-		<div className="flex flex-col gap-8 sm:gap-10">
+		<div className="flex flex-col gap-8">
 			{/* Tabs */}
 			<div className="overflow-x-auto">
 				<div className="flex gap-6 sm:gap-8 border-b border-[var(--border)] min-w-max">

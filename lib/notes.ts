@@ -16,23 +16,33 @@ function getText(prop: any) {
 }
 
 export async function getPublishedNotes() {
-	const res = await notion.dataSources.query({
-		data_source_id: databaseId!,
-		filter: {
-			property: "Status",
-			select: {
-				equals: "Published",
-			},
-		},
-		sorts: [
-			{
-				timestamp: "last_edited_time",
-				direction: "descending",
-			},
-		],
-	})
+	const results: any[] = []
+	let cursor: string | undefined = undefined
 
-	return res.results.map((page: any) => ({
+	while (true) {
+		const res = await notion.dataSources.query({
+			data_source_id: databaseId!,
+			start_cursor: cursor,
+			page_size: 100,
+			filter: {
+				property: "Status",
+				select: {equals: "Published"},
+			},
+			sorts: [
+				{
+					timestamp: "last_edited_time",
+					direction: "descending",
+				},
+			],
+		})
+
+		results.push(...res.results)
+
+		if (!res.has_more) break
+		cursor = res.next_cursor!
+	}
+
+	return results.map((page: any) => ({
 		title: getText(page.properties.Title),
 		slug: getText(page.properties.Slug),
 		theme: page.properties.Theme?.select?.name || "",
