@@ -12,9 +12,9 @@ export default function Footer() {
 		offset: ["start end", "end start"],
 	})
 
-	const opacity = useTransform(scrollYProgress, [0, 0.4, 0.8], [0, 1, 0])
-	const y = useTransform(scrollYProgress, [0, 0.4, 0.8], [40, 0, -40])
-	const blur = useTransform(scrollYProgress, [0, 0.4, 0.8], [1, 0, 1])
+	const opacity = useTransform(scrollYProgress, [0, 0.4], [0, 1])
+	const y = useTransform(scrollYProgress, [0, 0.4], [40, 0])
+	const blur = useTransform(scrollYProgress, [0, 0.4], [1, 0])
 
 	const filter = useMotionTemplate`blur(${blur}px)`
 

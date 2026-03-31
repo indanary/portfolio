@@ -4,6 +4,7 @@ export const revalidate = 60
 import Link from "next/link"
 
 import {getPublishedNotes} from "@/lib/notes"
+import {getThemeLabel} from "@/lib/theme"
 
 import Reveal from "@/components/Reveal"
 import NoteCard from "@/components/NoteCard"
@@ -73,11 +74,12 @@ export default async function Home() {
 						<ul className="flex flex-col gap-6">
 							{featuredNotes.map((n) => (
 								<NoteCard
-									key={n.slug}
+									key={n.title}
 									title={n.title}
 									description={n.description}
 									date={n.date}
 									topic={n.topic}
+									theme={getThemeLabel(n.theme)}
 									href={`/notes/${n.slug}`}
 								/>
 							))}

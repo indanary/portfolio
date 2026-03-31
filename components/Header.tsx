@@ -36,6 +36,16 @@ export default function Header() {
 						About
 					</Link>
 
+					{/* Search */}
+					<Link
+						href="/search"
+						className="text-lg opacity-70 hover:opacity-100 transition cursor-pointer"
+						aria-label="Search"
+						title="Search"
+					>
+						🔍
+					</Link>
+
 					<ThemeToggle />
 				</nav>
 			</div>

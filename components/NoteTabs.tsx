@@ -4,14 +4,9 @@
 import {useState} from "react"
 import {motion, AnimatePresence} from "framer-motion"
 import {getTopicColor} from "@/lib/topic"
+import {THEMES} from "@/lib/theme"
 
 import NoteCard from "./NoteCard"
-
-const themes = [
-	{key: "Software", label: "Software Engineering"},
-	{key: "Psychology", label: "Psychology"},
-	{key: "Philosophy", label: "Philosophy"},
-]
 
 export default function NoteTabs({notes}: {notes: any[]}) {
 	const [active, setActive] = useState("Software")
@@ -45,7 +40,7 @@ export default function NoteTabs({notes}: {notes: any[]}) {
 			{/* Tabs */}
 			<div className="overflow-x-auto">
 				<div className="flex gap-6 sm:gap-8 border-b border-[var(--border)] min-w-max">
-					{themes.map((t) => {
+					{THEMES.map((t) => {
 						const isActive = active === t.key
 						const count = counts[t.key] || 0
 
@@ -130,7 +125,7 @@ export default function NoteTabs({notes}: {notes: any[]}) {
 				>
 					{filtered.map((n) => (
 						<NoteCard
-							key={n.slug}
+							key={n.title}
 							title={n.title}
 							description={n.description}
 							date={n.date}

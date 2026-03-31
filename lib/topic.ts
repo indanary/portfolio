@@ -11,6 +11,9 @@ const topicColors: Record<string, string> = {
 
 	Vue: "bg-emerald-500/10 text-emerald-600 border-emerald-500/20 dark:text-emerald-400",
 
+	// 🌐 Web fundamentals
+	HTML: "bg-orange-500/10 text-orange-600 border-orange-500/20 dark:text-orange-400",
+
 	CSS: "bg-pink-500/10 text-pink-600 border-pink-500/20 dark:text-pink-400",
 
 	// 🧠 Thinking domains
