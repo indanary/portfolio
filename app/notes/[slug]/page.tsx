@@ -17,6 +17,10 @@ interface PageProps {
 	params: Promise<{slug: string}>
 }
 
+function getPlainText(richText: any[] = []) {
+	return richText.map((t) => t.plain_text).join("")
+}
+
 export async function generateMetadata({params}: PageProps) {
 	const {slug} = await params
 	const data = await getNoteBySlug(slug)
@@ -27,7 +31,7 @@ export async function generateMetadata({params}: PageProps) {
 
 	const page = data.page as any
 
-	const title = page.properties.Title.title[0]?.plain_text
+	const title = getPlainText(page.properties.Title.title)
 	const description =
 		page.properties.Description?.rich_text[0]?.plain_text ||
 		"Essay by Indana Rishi"
@@ -55,7 +59,7 @@ export default async function NotePage({params}: PageProps) {
 	const page = data.page as any
 	const blocks = renderBlocks(data.blocks)
 
-	const title = page.properties.Title.title[0]?.plain_text
+	const title = getPlainText(page.properties.Title.title)
 	const topic = page.properties.Topic?.select?.name ?? "General"
 	const date = page.properties.Date?.date?.start
 
