@@ -4,7 +4,7 @@ export const revalidate = 60
 
 import Link from "next/link"
 
-import {getNoteBySlug, getPublishedNotes} from "@/lib/notes"
+import {getNoteBySlug, getPublishedNotes, getRelatedNotes} from "@/lib/notes"
 import {renderBlocks} from "@/lib/renderNotion"
 import {getTopicColor} from "@/lib/topic"
 import {formatDate} from "@/lib/date"
@@ -62,10 +62,17 @@ export default async function NotePage({params}: PageProps) {
 	const title = getPlainText(page.properties.Title.title)
 	const topic = page.properties.Topic?.select?.name ?? "General"
 	const date = page.properties.Date?.date?.start
+	const description = getPlainText(
+		page.properties.Description?.rich_text || [],
+	)
 
 	const topicStyle = getTopicColor(topic)
 
-	const moreNotes = notes.filter((n) => n.slug !== slug).slice(0, 3)
+	const moreNotes = getRelatedNotes(notes, {
+		slug,
+		topic,
+		theme: page.properties.Theme?.select?.name || "",
+	})
 
 	return (
 		<>
@@ -97,6 +104,16 @@ export default async function NotePage({params}: PageProps) {
 						<h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold leading-[1.15] tracking-tight max-w-[20ch]">
 							{title}
 						</h1>
+
+						{description && (
+							<>
+								<p className="text-sm text-[var(--muted)] leading-relaxed max-w-[60ch]">
+									{description}
+								</p>
+
+								<div className="h-px bg-[var(--border)]/60 mt-4" />
+							</>
+						)}
 					</header>
 
 					{/* Article Content */}

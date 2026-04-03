@@ -52,6 +52,44 @@ export async function getPublishedNotes() {
 	}))
 }
 
+export function getRelatedNotes(
+	allNotes: any[],
+	current: {
+		slug: string
+		topic: string
+		theme: string
+	},
+	limit = 3,
+) {
+	return allNotes
+		.filter((n) => n.slug !== current.slug)
+		.map((n) => {
+			let score = 0
+
+			// Strong signal
+			if (n.topic === current.topic) score += 3
+
+			// Medium signal
+			if (n.theme === current.theme) score += 2
+
+			// Weak signal (optional: title similarity)
+			const currentWords = current.slug.split("-")
+			const noteWords = n.slug.split("-")
+
+			const overlap = currentWords.filter((w) =>
+				noteWords.includes(w),
+			).length
+
+			score += overlap
+
+			return {note: n, score}
+		})
+		.filter((r) => r.score > 0)
+		.sort((a, b) => b.score - a.score)
+		.slice(0, limit)
+		.map((r) => r.note)
+}
+
 function isFullBlock(block: any): block is {has_children: boolean; id: string} {
 	return "has_children" in block
 }
