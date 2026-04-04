@@ -8,6 +8,7 @@ import {getNoteBySlug, getPublishedNotes, getRelatedNotes} from "@/lib/notes"
 import {renderBlocks} from "@/lib/renderNotion"
 import {getTopicColor} from "@/lib/topic"
 import {formatDate} from "@/lib/date"
+import {getThemeLabel} from "@/lib/theme"
 
 import ReadingProgress from "@/components/ReadingProgress"
 import NoteCard from "@/components/NoteCard"
@@ -65,6 +66,7 @@ export default async function NotePage({params}: PageProps) {
 	const description = getPlainText(
 		page.properties.Description?.rich_text || [],
 	)
+	const theme = page.properties.Theme?.select?.name ?? ""
 
 	const topicStyle = getTopicColor(topic)
 
@@ -92,12 +94,35 @@ export default async function NotePage({params}: PageProps) {
 					{/* Header */}
 					<header className="flex flex-col gap-6">
 						<div className="flex flex-wrap items-center gap-3 text-sm text-[var(--muted)]">
+							{/* Theme */}
+							{theme && (
+								<span className="text-[var(--muted)]/70">
+									{getThemeLabel(theme)}
+								</span>
+							)}
+
+							{/* Separator (only if theme exists) */}
+							{theme && (
+								<span className="text-[var(--muted)]/40">
+									•
+								</span>
+							)}
+
+							{/* Topic */}
 							<span
 								className={`px-2 py-[2px] rounded border ${topicStyle}`}
 							>
 								{topic}
 							</span>
 
+							{/* Separator (only if date exists) */}
+							{date && (
+								<span className="text-[var(--muted)]/40">
+									•
+								</span>
+							)}
+
+							{/* Date */}
 							{date && <time>{formatDate(date)}</time>}
 						</div>
 
