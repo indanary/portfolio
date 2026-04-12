@@ -3,7 +3,7 @@ const topicColors: Record<string, string> = {
 	JavaScript:
 		"bg-amber-500/10 text-amber-600 border-amber-500/20 dark:text-amber-400",
 
-	Typescript:
+	TypeScript:
 		"bg-blue-500/10 text-blue-600 border-blue-500/20 dark:text-blue-400",
 
 	// ⚛️ Frontend frameworks
